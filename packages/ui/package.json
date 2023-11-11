@@ -13,19 +13,14 @@
   "scripts": {
     "build": "tsup src/index.tsx --format esm,cjs --dts --external react",
     "clean": "rm -rf dist",
-    "dev": "tsup src/index.tsx --format esm,cjs --watch --dts --external react",
+    "dev:editor": "tsup src/index.tsx --format esm,cjs --watch --dts --external react",
     "typecheck": "tsc --noEmit",
-    "lint": "eslint src/",
-    "test": "jest"
-  },
-  "jest": {
-    "preset": "jest-presets/jest/browser"
+    "lint": "eslint src/"
   },
   "devDependencies": {
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
     "eslint-config-custom": "workspace:*",
-    "jest-presets": "workspace:*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "tsconfig": "workspace:*",

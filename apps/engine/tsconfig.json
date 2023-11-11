@@ -1,9 +1,7 @@
+//@ts-ignore
 {
-  "exclude": ["node_modules"],
-  "extends": "tsconfig/vite.json",
-  "compilerOptions": {
-    "rootDir": "src",
-    "outDir": "dist"
-  },
-  "include": ["src"]
+  "extends": "tsconfig/react-library.json",
+  "compilerOptions": {},
+  
+  "include": ["src/**/*", "next-env.d.ts", "**/*.ts", "**/*.tsx"]
 }
