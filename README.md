@@ -1,39 +1,20 @@
-# Turborepo kitchen sink starter
+# What is Elixira Engine
 
-This is an official starter Turborepo with multiple meta-frameworks all working in harmony and sharing packages.
+Elixira engine is a 3D web based engine written in React/Typescript, using popular packages such as react three fiber and Electron to create desktop and web 3D experiences.
 
-This example also shows how to use [Workspace Configurations](https://turbo.build/repo/docs/core-concepts/monorepos/configuring-workspaces).
+## Getting Started
 
-## Using this example
+Elixira follows the idea of creating a potion,
 
-Run the following command:
+### Recipes (Scripts)
 
-```sh
-npx create-turbo@latest -e kitchen-sink
-```
+Recipes are where you can create scripts such as Camera movement, day night cycles the things that make your 3D experience tick.
 
-## What's inside?
+### Elements (Components)
 
-This Turborepo includes the following packages and apps:
+Elements are your components, this is where you would create your 3D models to create characters, buildings, props etc.
 
-### Apps and Packages
+### Cauldron (Prefabs)
 
-- `api`: an [Express](https://expressjs.com/) server
-- `storefront`: a [Next.js](https://nextjs.org/) app
-- `admin`: a [Vite](https://vitejs.dev/) single page app
-- `blog`: a [Remix](https://remix.run/) blog
-- `logger`: isomorphic logger (a small wrapper around console.log)
-- `ui`: a dummy React UI library (which contains a single `<CounterButton>` component)
-- `scripts`: Jest and ESLint configurations
-- `tsconfig`: tsconfig.json's used throughout the monorepo
+Cauldron allows you to use your elements and recipes and combine them into a 3D scene which allows you to test them in an isolated way ready to be used within your experience.
 
-Each package and app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Jest](https://jestjs.io) test runner for all things JavaScript
-- [Prettier](https://prettier.io) for code formatting
