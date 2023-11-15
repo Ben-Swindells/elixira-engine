@@ -1,5 +1,5 @@
-appId: com.electron.app
-productName: elixira-engine
+appId: com.elixira.app
+productName: Elixira engine
 directories:
   buildResources: build
 files:
@@ -12,7 +12,7 @@ files:
 asarUnpack:
   - resources/**
 win:
-  executableName: elixira-engine
+  executableName: Elixira engine
 nsis:
   artifactName: ${name}-${version}-setup.${ext}
   shortcutName: ${productName}
