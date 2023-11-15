@@ -23,7 +23,11 @@
   "dependencies": {
     "@electron-toolkit/preload": "^2.0.0",
     "@electron-toolkit/utils": "^2.0.0",
-    "electron-updater": "^6.1.1"
+    "electron-updater": "^6.1.1",
+    "@react-three/drei": "^9.88.13",
+    "@react-three/fiber": "^8.15.10",
+    "@types/three": "^0.158.2",
+    "three": "^0.158.0"
   },
   "devDependencies": {
     "@electron-toolkit/eslint-config-prettier": "^1.0.1",
@@ -44,6 +48,9 @@
     "typescript": "^5.1.6",
     "vite": "^4.4.9",
     "tsconfig": "workspace:*",
-    "tailwind-config": "workspace:*"
+    "tailwind-config": "workspace:*",
+    "@components/prefabs": "workspace:*",
+    "@components/scripts": "workspace:*",
+    "@components/3d": "workspace:*"
   }
 }
