@@ -1,12 +1,12 @@
 import { Canvas } from '@react-three/fiber'
 import { TestBox } from '@components/3d/Box'
+import { StartScreen } from 'elixira-builder/src/components'
+
 function App(): JSX.Element {
   return (
-    <div className="w-screen h-screen">
-      <Canvas>
-        <TestBox />
-      </Canvas>
-    </div>
+    <>
+      <StartScreen />
+    </>
   )
 }
 

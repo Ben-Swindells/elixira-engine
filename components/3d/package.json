@@ -15,7 +15,8 @@
     "@react-three/drei": "^9.88.13",
     "@react-three/fiber": "^8.15.10",
     "@types/three": "^0.158.2",
-    "three": "^0.158.0"
+    "three": "^0.158.0",
+    "tsconfig": "workspace:*"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

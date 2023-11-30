@@ -1,13 +1,12 @@
 import "./App.css";
-import { TextBox } from "@components/scripts/3D/TestBox";
 import { Canvas } from "@react-three/fiber";
 
 function App() {
-  return (
-    <Canvas>
-      <TextBox />
-    </Canvas>
-  );
+  return <>Prefabs</>;
 }
+
+export const HelloWorld = () => {
+  return <div className="w-screen h-screen bg-black text-white">Prefab</div>;
+};
 
 export default App;

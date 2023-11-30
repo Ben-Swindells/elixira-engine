@@ -51,6 +51,7 @@
     "tailwind-config": "workspace:*",
     "@components/prefabs": "workspace:*",
     "@components/scripts": "workspace:*",
-    "@components/3d": "workspace:*"
+    "@components/3d": "workspace:*",
+    "elixira-builder": "workspace:*"
   }
 }
