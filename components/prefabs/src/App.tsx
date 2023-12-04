@@ -1,12 +1,7 @@
-import "./App.css";
-import { Canvas } from "@react-three/fiber";
+import { MainLayout } from "./layouts";
 
 function App() {
-  return <>Prefabs</>;
+  return <MainLayout />;
 }
-
-export const HelloWorld = () => {
-  return <div className="w-screen h-screen bg-black text-white">Prefab</div>;
-};
 
 export default App;

@@ -5,7 +5,7 @@ import { StartScreen } from 'elixira-builder/src/components'
 function App(): JSX.Element {
   return (
     <>
-      <StartScreen />
+      <div className="bg-black w-screen h-screen"></div>
     </>
   )
 }
