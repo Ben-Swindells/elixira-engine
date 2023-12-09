@@ -33,6 +33,8 @@
     "tsconfig": "workspace:*",
     "typescript": "^5.0.2",
     "vite": "^4.4.5",
-    "@components/3d": "workspace:*"
+    "@components/3d": "workspace:*",
+    "tailwindcss": "^3.3.5",
+    "autoprefixer": "^10.4.16"
   }
 }

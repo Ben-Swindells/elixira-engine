@@ -1,9 +1,9 @@
-import { BoxPrefab } from "./prefabs/Box";
+import { PotionPrefab } from "./prefabs/Potion";
 
 export const prefabPages = [
-    {
-        buttonLabel: "Box",
-        path: "/box",
-        component: BoxPrefab(),
-    },
+  {
+    buttonLabel: "Box",
+    path: "/box",
+    component: PotionPrefab(),
+  },
 ];

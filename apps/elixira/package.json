@@ -30,6 +30,7 @@
     "three": "^0.158.0"
   },
   "devDependencies": {
+    "tailwind-config": "workspace:*",
     "@electron-toolkit/eslint-config-prettier": "^1.0.1",
     "@electron-toolkit/eslint-config-ts": "^1.0.0",
     "@electron-toolkit/tsconfig": "^1.0.1",
@@ -48,10 +49,11 @@
     "typescript": "^5.1.6",
     "vite": "^4.4.9",
     "tsconfig": "workspace:*",
-    "tailwind-config": "workspace:*",
     "@components/prefabs": "workspace:*",
     "@components/scripts": "workspace:*",
     "@components/3d": "workspace:*",
-    "elixira-builder": "workspace:*"
+    "elixira-builder": "workspace:*",
+    "tailwindcss": "^3.3.5",
+    "autoprefixer": "^10.4.16"
   }
 }
