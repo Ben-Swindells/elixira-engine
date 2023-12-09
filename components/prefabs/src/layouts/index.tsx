@@ -8,8 +8,14 @@ export const IntroductionLayout = () => {
     <div className="w-screen h-screen bg-[#240329] flex">
       <Menubar>
         <MenubarButton label={"Home"} slug={"/"} />
-        {prefabPages.map((page) => {
-          return <MenubarButton label={page.buttonLabel} slug={page.path} />;
+        {prefabPages.map((page, index) => {
+          return (
+            <MenubarButton
+              key={index}
+              label={page.buttonLabel}
+              slug={page.path}
+            />
+          );
         })}
       </Menubar>
       <div className="flex w-full h-full justify-center items-center flex-col mx-14">
@@ -39,12 +45,18 @@ export const PrefabLayout = ({ element }: PrefabLayoutProps) => {
     <div className="w-screen h-screen bg-[#240329] flex">
       <Menubar>
         <MenubarButton label={"Home"} slug={"/"} />
-        {prefabPages.map((page) => {
-          return <MenubarButton label={page.buttonLabel} slug={page.path} />;
+        {prefabPages.map((page, index) => {
+          return (
+            <MenubarButton
+              key={index}
+              label={page.buttonLabel}
+              slug={page.path}
+            />
+          );
         })}
       </Menubar>
       <div className="flex w-full h-full justify-center items-center">
-        <div className="w-3/4 bg-white aspect-video flex">
+        <div className="w-3/4 bg-gray-800 aspect-video flex">
           <Canvas shadows="soft">
             <ambientLight intensity={1} />
             <OrbitControls />
