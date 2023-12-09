@@ -32,6 +32,7 @@
     "tailwind-config": "workspace:*",
     "tsconfig": "workspace:*",
     "typescript": "^5.0.2",
-    "vite": "^4.4.5"
+    "vite": "^4.4.5",
+    "@components/3d": "workspace:*"
   }
 }
