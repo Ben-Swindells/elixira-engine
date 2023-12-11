@@ -1,0 +1,7 @@
+//@ts-ignore
+{
+  "extends": "tsconfig/react-library.json",
+  "compilerOptions": {},
+  
+  "include": ["src/**/*", "next-env.d.ts", "**/*.ts", "**/*.tsx", "postcss.config.cts"]
+}
