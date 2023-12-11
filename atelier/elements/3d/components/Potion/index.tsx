@@ -1,5 +1,5 @@
 import { useGLTF } from "@react-three/drei";
-import Bottle from "../assets/potion-bottle.glb?url";
+import Bottle from "../../assets/models/potion-bottle.glb?url";
 import React from "react";
 
 export const PotionBottle = () => {

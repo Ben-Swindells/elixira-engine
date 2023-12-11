@@ -1,7 +1,8 @@
 {
-  "name": "@components/scripts",
+  "name": "@atelier/elements",
   "version": "0.0.1",
   "description": "",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,12 +11,15 @@
   "license": "ISC",
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "@react-three/drei": "^9.88.13",
+    "@react-three/fiber": "^8.15.10",
+    "@types/three": "^0.158.2",
+    "three": "^0.158.0",
+    "tsconfig": "workspace:*"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
-    "@types/react-dom": "^18.2.7",
-    "typescript": "^5.0.2",
-    "tsconfig": "workspace:*"
+    "@types/react-dom": "^18.2.7"
   }
 }

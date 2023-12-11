@@ -49,9 +49,9 @@
     "typescript": "^5.1.6",
     "vite": "^4.4.9",
     "tsconfig": "workspace:*",
-    "@components/prefabs": "workspace:*",
-    "@components/scripts": "workspace:*",
-    "@components/3d": "workspace:*",
+    "@atelier/cauldron": "workspace:*",
+    "@atelier/recipes": "workspace:*",
+    "@atelier/elements": "workspace:*",
     "elixira-builder": "workspace:*",
     "tailwindcss": "^3.3.5",
     "autoprefixer": "^10.4.16"
