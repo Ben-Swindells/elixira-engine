@@ -24,12 +24,30 @@ function createProject(targetPath) {
 
   initializeProject(targetDir);
 
-  // Clone the repository
-  const defaultTemplateRepoUrl =
-    "https://github.com/Ben-Swindells/elixira-engine/tree/main/default-template"; // Replace with your repo URL
-  child_process.execSync(`git clone ${defaultTemplateRepoUrl} "${targetDir}"`, {
+  console.log(`Creating project in ${targetDir}...`);
+
+  const repoUrl = "https://github.com/Ben-Swindells/elixira-engine.git"; // Repository URL
+  const tempDir = path.join(targetDir, "_tempClone"); // Temporary directory for cloning
+
+  // Clone the repository into a temporary directory
+  child_process.execSync(`git clone ${repoUrl} "${tempDir}"`, {
     stdio: "inherit",
   });
+
+  // Copy the contents of the default-template to the target directory
+  const templateDir = path.join(tempDir, "default-template");
+  fs.readdirSync(templateDir).forEach((file) => {
+    const srcPath = path.join(templateDir, file);
+    const destPath = path.join(targetDir, file);
+    if (fs.statSync(srcPath).isDirectory()) {
+      fs.cpSync(srcPath, destPath, { recursive: true });
+    } else {
+      fs.copyFileSync(srcPath, destPath);
+    }
+  });
+
+  // Cleanup: Remove the temporary clone directory
+  fs.rmdirSync(tempDir, { recursive: true });
 
   console.log("Project created successfully.");
 }
