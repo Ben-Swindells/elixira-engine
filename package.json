@@ -2,7 +2,7 @@
   "name": "elixira-engine",
   "version": "0.0.1-cli-v14",
   "bin": {
-    "elixira-engine:default-template": "./cli.js"
+    "elixira-engine": "./cli.js"
   },
   "packageManager": "pnpm@8.6.10"
 }
