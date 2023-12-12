@@ -52,7 +52,6 @@
     "@atelier/cauldron": "workspace:*",
     "@atelier/recipes": "workspace:*",
     "@atelier/elements": "workspace:*",
-    "elixira-builder": "workspace:*",
     "tailwindcss": "^3.3.5",
     "autoprefixer": "^10.4.16"
   }
