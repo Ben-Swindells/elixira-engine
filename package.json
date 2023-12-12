@@ -1,6 +1,6 @@
 {
   "name": "elixira-engine",
-  "version": "0.0.1-cli-v1",
+  "version": "0.0.1-cli-v2",
   "scripts": {
     "build": "turbo build",
     "clean": "turbo clean",
@@ -19,7 +19,7 @@
     "turbo": "latest"
   },
   "bin": {
-    "install": "./cli.js"
+    "elixira-engine": "./cli.js"
   },
   "packageManager": "pnpm@8.6.10"
 }
