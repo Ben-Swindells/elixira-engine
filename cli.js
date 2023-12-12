@@ -21,7 +21,7 @@ function initializeProject(targetDir) {
 
   // Run npm install to install dependencies
   console.log("Installing dependencies...");
-  child_process.execSync("npm install", { stdio: "inherit", cwd: targetDir });
+  child_process.execSync("pnpm install", { stdio: "inherit", cwd: targetDir });
 }
 
 function createProject(targetPath) {
