@@ -1,5 +1,5 @@
 {
-  "name": "elixira-engine",
+  "name": "elixira-engine-default-template",
   "version": "0.0.1-cli-v11",
   "scripts": {
     "build": "turbo build",

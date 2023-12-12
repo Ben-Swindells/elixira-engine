@@ -1,0 +1,8 @@
+{
+  "name": "elixira-engine",
+  "version": "0.0.1-cli-v12",
+  "bin": {
+    "default-template": "../cli.js"
+  },
+  "packageManager": "pnpm@8.6.10"
+}
