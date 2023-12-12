@@ -24,7 +24,7 @@ importers:
         specifier: latest
         version: 1.10.16
 
-  basic-template/apps/elixira:
+  apps/elixira:
     dependencies:
       '@electron-toolkit/preload':
         specifier: ^2.0.0
@@ -124,7 +124,7 @@ importers:
         specifier: ^4.4.9
         version: 4.4.9(@types/node@18.17.14)
 
-  basic-template/atelier/cauldron:
+  atelier/cauldron:
     dependencies:
       '@react-three/drei':
         specifier: ^9.88.13
@@ -200,7 +200,7 @@ importers:
         specifier: ^4.4.5
         version: 4.4.9(@types/node@18.17.14)
 
-  basic-template/atelier/elements:
+  atelier/elements:
     dependencies:
       '@react-three/drei':
         specifier: ^9.88.13
@@ -231,7 +231,7 @@ importers:
         specifier: ^18.2.7
         version: 18.2.15
 
-  basic-template/atelier/recipes:
+  atelier/recipes:
     dependencies:
       react:
         specifier: ^18.2.0
@@ -253,7 +253,7 @@ importers:
         specifier: ^5.0.2
         version: 5.2.2
 
-  basic-template/packages/elixira-builder:
+  packages/elixira-builder:
     dependencies:
       react:
         specifier: ^18.2.0
@@ -299,7 +299,7 @@ importers:
         specifier: ^5.0.0
         version: 5.0.0
 
-  basic-template/packages/tailwind-config:
+  packages/tailwind-config:
     devDependencies:
       postcss:
         specifier: ^8.4.31
@@ -308,7 +308,7 @@ importers:
         specifier: ^15.1.0
         version: 15.1.0(postcss@8.4.31)
 
-  basic-template/packages/tsconfig: {}
+  packages/tsconfig: {}
 
 packages:
 

@@ -1,4 +1,0 @@
-packages:
-  - "basic-template/apps/*"
-  - "basic-template/atelier/*"
-  - "basic-template/packages/*"

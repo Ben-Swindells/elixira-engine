@@ -32,11 +32,11 @@ function initializeProject(targetDir) {
   }
 
   console.log(
-    `Initializing project in ${targetDir} with the basic-template...`
+    `Initializing project in ${targetDir} with the default-template...`
   );
   // Additional initialization logic here
 
-  const templateDir = path.join(__dirname, "basic-template");
+  const templateDir = path.join(__dirname, "default-template");
   copyTemplateFiles(templateDir, targetDir);
 
   // Run npm install to install dependencies
