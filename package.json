@@ -1,6 +1,6 @@
 {
   "name": "elixira-engine",
-  "version": "0.0.1-cli-v7",
+  "version": "0.0.1-cli-v8",
   "scripts": {
     "build": "turbo build",
     "clean": "turbo clean",
