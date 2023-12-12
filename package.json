@@ -1,6 +1,6 @@
 {
   "name": "elixira-engine",
-  "version": "0.0.1-cli-v13",
+  "version": "0.0.1-cli-v17",
   "bin": {
     "elixira-engine": "./cli.js"
   },
