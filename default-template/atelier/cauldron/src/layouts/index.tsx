@@ -20,7 +20,7 @@ export const IntroductionLayout = () => {
       </Menubar>
       <div className="flex w-full h-full justify-center items-center flex-col mx-14">
         <h1 className="text-4xl text-bold text-white mb-14">
-          Welcome to your cauldron!
+          Welcome to your prefabs
         </h1>
         <p className="text-2xl text-white mx-14 mb-6 text-center">
           Here you will find a place to merge all your scripts, animations and
@@ -30,7 +30,7 @@ export const IntroductionLayout = () => {
           To test your prefab, simply add a new item to the pages.tsx file and
           add your prefab to the menu.
         </p>
-        <p className="text-2xl  text-white mx-14 text-center">Happy brewing!</p>
+        <p className="text-2xl  text-white mx-14 text-center">Happy coding!</p>
       </div>
     </div>
   );
