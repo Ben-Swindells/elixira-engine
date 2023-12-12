@@ -6,30 +6,20 @@ const child_process = require("child_process");
 
 const args = process.argv.slice(2);
 
-function initializeProject(targetDir) {
-  const allowedFiles = [".git", "package.json"]; // Add other file/directory names if needed
-  const files = fs.readdirSync(targetDir);
-  // Check if directory contains files other than the allowed ones
-  const containsOtherFiles = files.some((file) => !allowedFiles.includes(file));
-  if (containsOtherFiles) {
-    console.error("Target directory is not empty.");
-    process.exit(1);
-  }
-  console.log(`Installing Elixira Engine in ${targetDir}...`);
-  // Additional initialization logic here
-}
-
 function createProject(targetPath) {
   const targetDir = path.resolve(process.cwd(), targetPath);
 
-  initializeProject(targetDir);
+  // Check if the target directory is valid
+  if (fs.existsSync(targetDir) && fs.readdirSync(targetDir).length > 0) {
+    console.error("Target directory is not empty.");
+    process.exit(1);
+  }
 
   console.log(`Creating project in ${targetDir}...`);
 
-  const repoUrl = "https://github.com/Ben-Swindells/elixira-engine.git"; // Repository URL
-  const tempDir = path.join(targetDir, "_tempClone"); // Temporary directory for cloning
-
   // Clone the repository into a temporary directory
+  const repoUrl = "https://github.com/Ben-Swindells/elixira-engine.git"; // Repository URL
+  const tempDir = path.join(targetDir, "_tempClone");
   child_process.execSync(`git clone ${repoUrl} "${tempDir}"`, {
     stdio: "inherit",
   });
@@ -49,7 +39,14 @@ function createProject(targetPath) {
   // Cleanup: Remove the temporary clone directory
   fs.rmdirSync(tempDir, { recursive: true });
 
-  console.log("Project created successfully.");
+  // Initialize Git and set remote to elixira-engine repository
+  child_process.execSync(`git init`, { stdio: "inherit", cwd: targetDir });
+  child_process.execSync(`git remote add origin ${repoUrl}`, {
+    stdio: "inherit",
+    cwd: targetDir,
+  });
+
+  console.log("Project created and Git initialized successfully.");
 }
 
 function updateProject() {
@@ -57,9 +54,13 @@ function updateProject() {
 
   console.log(`Updating project in ${projectDir}...`);
 
-  // Pull the latest changes from the repository
+  // Pull the latest changes from the elixira-engine repository
   try {
-    child_process.execSync(`git pull origin main`, {
+    child_process.execSync(`git fetch --all`, {
+      stdio: "inherit",
+      cwd: projectDir,
+    });
+    child_process.execSync(`git reset --hard origin/main`, {
       stdio: "inherit",
       cwd: projectDir,
     });
