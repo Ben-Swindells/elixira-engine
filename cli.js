@@ -6,6 +6,20 @@ const child_process = require("child_process");
 
 const args = process.argv.slice(2);
 
+function copyTemplateFiles(sourceDir, targetDir) {
+  fs.readdirSync(sourceDir, { withFileTypes: true }).forEach((dirent) => {
+    const sourcePath = path.join(sourceDir, dirent.name);
+    const targetPath = path.join(targetDir, dirent.name);
+
+    if (dirent.isDirectory()) {
+      fs.mkdirSync(targetPath, { recursive: true });
+      copyTemplateFiles(sourcePath, targetPath);
+    } else {
+      fs.copyFileSync(sourcePath, targetPath);
+    }
+  });
+}
+
 function initializeProject(targetDir) {
   const allowedFiles = [".git", "package.json"]; // Add other file/directory names if needed
   const files = fs.readdirSync(targetDir);
@@ -17,15 +31,13 @@ function initializeProject(targetDir) {
     process.exit(1);
   }
 
-  // If package.json doesn't exist, create it or copy it from a template
-  const packageJsonPath = path.join(targetDir, "package.json");
-  if (!fs.existsSync(packageJsonPath)) {
-    console.log("Creating package.json...");
-    // Example: fs.writeFileSync(packageJsonPath, JSON.stringify({/* initial content */}));
-  }
-
-  console.log(`Initializing project in ${targetDir}...`);
+  console.log(
+    `Initializing project in ${targetDir} with the basic-template...`
+  );
   // Additional initialization logic here
+
+  const templateDir = path.join(__dirname, "basic-template");
+  copyTemplateFiles(templateDir, targetDir);
 
   // Run npm install to install dependencies
   console.log("Installing dependencies...");
