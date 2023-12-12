@@ -14,13 +14,6 @@ function initializeProject(targetDir) {
     console.error("Target directory is not empty.");
     process.exit(1);
   }
-
-  console.log(`Initializing project in ${targetDir}...`);
-  // Your initialization logic here
-
-  // If your setup includes installing dependencies or running scripts, do it here
-  // For example, to run 'npm install':
-  child_process.execSync("npm install", { stdio: "inherit", cwd: targetDir });
 }
 
 function createProject(targetPath) {
