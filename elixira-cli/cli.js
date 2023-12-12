@@ -52,21 +52,29 @@ function createProject(targetPath) {
 function updateProject() {
   const projectDir = process.cwd();
 
-  console.log(`Updating project in ${projectDir}...`);
+  console.log(`Checking for updates in ${projectDir}...`);
 
-  // Pull the latest changes from the elixira-engine repository
   try {
-    child_process.execSync(`git fetch --all`, {
-      stdio: "inherit",
+    // Fetch the latest repository data
+    child_process.execSync(`git fetch`, { stdio: "inherit", cwd: projectDir });
+
+    // Check if there are updates
+    const status = child_process.execSync(`git status -uno`, {
+      encoding: "utf-8",
       cwd: projectDir,
     });
-    child_process.execSync(`git reset --hard origin/main`, {
-      stdio: "inherit",
-      cwd: projectDir,
-    });
-    console.log("Project updated successfully.");
+
+    if (status.includes("Your branch is up to date")) {
+      console.log("No updates available.");
+    } else {
+      console.log("Updates found, updating Elixira engine...");
+
+      // Pull the latest changes
+      child_process.execSync(`git pull`, { stdio: "inherit", cwd: projectDir });
+      console.log("Project updated successfully.");
+    }
   } catch (error) {
-    console.error("Error updating project:", error.message);
+    console.error("Error while updating project:", error.message);
   }
 }
 
