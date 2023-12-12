@@ -6,16 +6,23 @@ const child_process = require("child_process");
 
 const args = process.argv.slice(2);
 
-function createProject(targetPath) {
-  const targetDir = path.resolve(process.cwd(), targetPath);
-
-  // Check if the target directory is valid
-  if (fs.existsSync(targetDir) && fs.readdirSync(targetDir).length > 0) {
+function initializeProject(targetDir) {
+  const allowedFiles = [".git", "package.json"]; // Add other file/directory names if needed
+  const files = fs.readdirSync(targetDir);
+  // Check if directory contains files other than the allowed ones
+  const containsOtherFiles = files.some((file) => !allowedFiles.includes(file));
+  if (containsOtherFiles) {
     console.error("Target directory is not empty.");
     process.exit(1);
   }
+  console.log(`Installing Elixira Engine in ${targetDir}...`);
+  // Additional initialization logic here
+}
 
-  console.log(`Creating project in ${targetDir}...`);
+function createProject(targetPath) {
+  const targetDir = path.resolve(process.cwd(), targetPath);
+
+  initializeProject(targetDir);
 
   // Clone the repository
   const defaultTemplateRepoUrl =
