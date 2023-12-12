@@ -14,6 +14,14 @@ function initializeProject(targetDir) {
     console.error("Target directory is not empty.");
     process.exit(1);
   }
+
+  // Copy or create essential project files (e.g., package.json, src files)
+  console.log("Creating necessary project files...");
+  // Example: fs.writeFileSync(path.join(targetDir, 'package.json'), JSON.stringify(packageJsonContent));
+
+  // Run npm install to install dependencies
+  console.log("Installing dependencies...");
+  child_process.execSync("npm install", { stdio: "inherit", cwd: targetDir });
 }
 
 function createProject(targetPath) {
@@ -32,7 +40,6 @@ switch (args[0]) {
     const targetPath = args[1] || ".";
     createProject(targetPath);
     break;
-  // Additional cases for other commands
   default:
     console.log("Command not recognized");
 }
