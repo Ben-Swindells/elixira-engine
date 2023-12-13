@@ -30,10 +30,13 @@ function createProject(targetPath) {
   // Clone the repository into a temporary directory
   const repoUrl = "https://github.com/Ben-Swindells/elixira-engine.git"; // Repository URL
   const tempDir = path.join(targetDir, "_tempClone");
-  child_process.execSync(`git clone ${repoUrl} "${tempDir}"`, {
-    stdio: "inherit",
-  });
-
+  const templateBranch = "default-template"; // Set the branch you want to clone
+  child_process.execSync(
+    `git clone --depth 1 --branch ${templateBranch} ${repoUrl} "${tempDir}"`,
+    {
+      stdio: "inherit",
+    }
+  );
   // Copy the contents of the default-template to the target directory
   const templateDir = path.join(tempDir, "default-template");
   fs.readdirSync(templateDir).forEach((file) => {
