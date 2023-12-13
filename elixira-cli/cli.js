@@ -10,21 +10,22 @@ function createProject(targetPath) {
   const targetDir = path.resolve(process.cwd(), targetPath);
   const allowedFiles = [".git", "package.json", "README.md"];
 
-  // Check if the target directory is valid
   if (fs.existsSync(targetDir)) {
     const existingFiles = fs.readdirSync(targetDir);
-    const containsDisallowedFiles = existingFiles.some(
+
+    const disallowedFiles = existingFiles.filter(
       (file) => !allowedFiles.includes(file)
     );
-
-    if (containsDisallowedFiles) {
-      console.error(
-        "Target directory is not empty or contains disallowed files."
-      );
+    if (disallowedFiles.length > 0) {
+      console.error("The following files/directories are not allowed:");
+      disallowedFiles.forEach((file) => {
+        console.error(file);
+      });
       process.exit(1);
     }
   }
 
+  console.log(`Creating project in ${targetDir}...`);
   console.log(`Creating project in ${targetDir}...`);
 
   // Clone the repository into a temporary directory
@@ -49,12 +50,26 @@ function createProject(targetPath) {
   // Cleanup: Remove the temporary clone directory
   fs.rmdirSync(tempDir, { recursive: true });
 
-  // Initialize Git and set remote to elixira-engine repository
+  // Initialize Git and set remote to the user's own repository
   child_process.execSync(`git init`, { stdio: "inherit", cwd: targetDir });
-  child_process.execSync(`git remote add origin ${repoUrl}`, {
-    stdio: "inherit",
-    cwd: targetDir,
-  });
+  child_process.execSync(
+    `git remote add origin https://github.com/Ben-Swindells/dark-fantasy-card-game.git`,
+    {
+      stdio: "inherit",
+      cwd: targetDir,
+    }
+  );
+
+  // Add a secondary remote for fetching updates from elixira-engine
+  const elixiraEngineRepoUrl =
+    "https://github.com/Ben-Swindells/elixira-engine.git";
+  child_process.execSync(
+    `git remote add elixira-engine ${elixiraEngineRepoUrl}`,
+    {
+      stdio: "inherit",
+      cwd: targetDir,
+    }
+  );
 
   console.log("Project created and Git initialized successfully.");
 }
@@ -65,21 +80,28 @@ function updateProject() {
   console.log(`Checking for updates in ${projectDir}...`);
 
   try {
-    // Fetch the latest repository data
+    // Fetch the latest repository data without modifying working directory
     child_process.execSync(`git fetch`, { stdio: "inherit", cwd: projectDir });
 
-    // Check if there are updates
-    const status = child_process.execSync(`git status -uno`, {
+    // Compare local and remote branches to check for updates
+    const status = child_process.execSync(`git status`, {
       encoding: "utf-8",
       cwd: projectDir,
     });
+    const localVsRemote = child_process.execSync(
+      `git log HEAD..origin/main --oneline`,
+      {
+        encoding: "utf-8",
+        cwd: projectDir,
+      }
+    );
 
-    if (status.includes("Your branch is up to date")) {
+    if (status.includes("Your branch is up to date") && !localVsRemote) {
       console.log("No updates available.");
     } else {
       console.log("Updates found, updating Elixira engine...");
 
-      // Pull the latest changes
+      // Pull the latest changes and merge them into the current branch
       child_process.execSync(`git pull`, { stdio: "inherit", cwd: projectDir });
       console.log("Project updated successfully.");
     }
