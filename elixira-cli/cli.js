@@ -26,7 +26,6 @@ function createProject(targetPath) {
   }
 
   console.log(`Creating project in ${targetDir}...`);
-  console.log(`Creating project in ${targetDir}...`);
 
   // Clone the repository into a temporary directory
   const repoUrl = "https://github.com/Ben-Swindells/elixira-engine.git"; // Repository URL
@@ -50,26 +49,14 @@ function createProject(targetPath) {
   // Cleanup: Remove the temporary clone directory
   fs.rmdirSync(tempDir, { recursive: true });
 
-  // Initialize Git and set remote to the user's own repository
+  // Initialize Git in the target directory
   child_process.execSync(`git init`, { stdio: "inherit", cwd: targetDir });
-  child_process.execSync(
-    `git remote add origin https://github.com/Ben-Swindells/dark-fantasy-card-game.git`,
-    {
-      stdio: "inherit",
-      cwd: targetDir,
-    }
-  );
 
   // Add a secondary remote for fetching updates from elixira-engine
-  const elixiraEngineRepoUrl =
-    "https://github.com/Ben-Swindells/elixira-engine.git";
-  child_process.execSync(
-    `git remote add elixira-engine ${elixiraEngineRepoUrl}`,
-    {
-      stdio: "inherit",
-      cwd: targetDir,
-    }
-  );
+  child_process.execSync(`git remote add elixira-engine ${repoUrl}`, {
+    stdio: "inherit",
+    cwd: targetDir,
+  });
 
   console.log("Project created and Git initialized successfully.");
 }
@@ -86,33 +73,21 @@ function updateProject() {
       cwd: projectDir,
     });
 
-    // Check if elixira-engine/main branch exists locally
-    try {
-      child_process.execSync(`git rev-parse --verify elixira-engine/main`, {
-        cwd: projectDir,
-      });
-    } catch {
-      console.error(
-        "elixira-engine/main branch not found. Make sure it exists and is fetched."
-      );
-      process.exit(1);
-    }
+    // Check git status to determine if local is behind remote
+    const status = child_process.execSync(`git status`, {
+      encoding: "utf-8",
+      cwd: projectDir,
+    });
 
-    // Compare local branch to elixira-engine/main branch for updates
-    const localVsRemote = child_process.execSync(
-      `git log HEAD..elixira-engine/main --oneline`,
-      { encoding: "utf-8", cwd: projectDir }
-    );
-
-    if (!localVsRemote) {
-      console.log("No updates available.");
-    } else {
+    if (status.includes("Your branch is behind")) {
       console.log("Updates found, updating Elixira engine...");
-      child_process.execSync(`git pull elixira-engine main`, {
+      child_process.execSync(`git pull elixira-engine default-template`, {
         stdio: "inherit",
         cwd: projectDir,
       });
       console.log("Project updated successfully.");
+    } else {
+      console.log("No updates available.");
     }
   } catch (error) {
     console.error("Error while updating project:", error.message);
