@@ -8,11 +8,21 @@ const args = process.argv.slice(2);
 
 function createProject(targetPath) {
   const targetDir = path.resolve(process.cwd(), targetPath);
+  const allowedFiles = [".git"];
 
   // Check if the target directory is valid
-  if (fs.existsSync(targetDir) && fs.readdirSync(targetDir).length > 0) {
-    console.error("Target directory is not empty.");
-    process.exit(1);
+  if (fs.existsSync(targetDir)) {
+    const existingFiles = fs.readdirSync(targetDir);
+    const containsDisallowedFiles = existingFiles.some(
+      (file) => !allowedFiles.includes(file)
+    );
+
+    if (containsDisallowedFiles) {
+      console.error(
+        "Target directory is not empty or contains disallowed files."
+      );
+      process.exit(1);
+    }
   }
 
   console.log(`Creating project in ${targetDir}...`);
