@@ -30,7 +30,7 @@ export const IntroductionLayout = () => {
           To test your prefab, simply add a new item to the pages.tsx file and
           add your prefab to the menu.
         </p>
-        <p className="text-2xl  text-white mx-14 text-center">Happy brewing!</p>
+        <p className="text-2xl  text-white mx-14 text-center">Happy brewing! HELLO WORLD</p>
       </div>
     </div>
   );

@@ -8,7 +8,7 @@ const args = process.argv.slice(2);
 
 function createProject(targetPath) {
   const targetDir = path.resolve(process.cwd(), targetPath);
-  const allowedFiles = [".git"];
+  const allowedFiles = [".git", "package.json", "README.md"];
 
   // Check if the target directory is valid
   if (fs.existsSync(targetDir)) {
