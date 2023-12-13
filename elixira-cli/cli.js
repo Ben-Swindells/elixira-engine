@@ -80,29 +80,38 @@ function updateProject() {
   console.log(`Checking for updates in ${projectDir}...`);
 
   try {
-    // Fetch the latest repository data without modifying working directory
-    child_process.execSync(`git fetch`, { stdio: "inherit", cwd: projectDir });
-
-    // Compare local and remote branches to check for updates
-    const status = child_process.execSync(`git status`, {
-      encoding: "utf-8",
+    // Fetch the latest repository data from elixira-engine remote
+    child_process.execSync(`git fetch elixira-engine`, {
+      stdio: "inherit",
       cwd: projectDir,
     });
-    const localVsRemote = child_process.execSync(
-      `git log HEAD..origin/main --oneline`,
-      {
-        encoding: "utf-8",
+
+    // Check if elixira-engine/main branch exists locally
+    try {
+      child_process.execSync(`git rev-parse --verify elixira-engine/main`, {
         cwd: projectDir,
-      }
+      });
+    } catch {
+      console.error(
+        "elixira-engine/main branch not found. Make sure it exists and is fetched."
+      );
+      process.exit(1);
+    }
+
+    // Compare local branch to elixira-engine/main branch for updates
+    const localVsRemote = child_process.execSync(
+      `git log HEAD..elixira-engine/main --oneline`,
+      { encoding: "utf-8", cwd: projectDir }
     );
 
-    if (status.includes("Your branch is up to date") && !localVsRemote) {
+    if (!localVsRemote) {
       console.log("No updates available.");
     } else {
       console.log("Updates found, updating Elixira engine...");
-
-      // Pull the latest changes and merge them into the current branch
-      child_process.execSync(`git pull`, { stdio: "inherit", cwd: projectDir });
+      child_process.execSync(`git pull elixira-engine main`, {
+        stdio: "inherit",
+        cwd: projectDir,
+      });
       console.log("Project updated successfully.");
     }
   } catch (error) {
