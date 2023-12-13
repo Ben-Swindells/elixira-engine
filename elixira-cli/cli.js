@@ -76,13 +76,20 @@ function updateProject() {
       cwd: projectDir,
     });
 
-    // Check git status to determine if local is behind remote
-    const status = child_process.execSync(`git status`, {
-      encoding: "utf-8",
-      cwd: projectDir,
-    });
+    // Check if there are commits in elixira-engine/default-template that are not in the current branch
+    const comparison = child_process
+      .execSync(
+        `git rev-list --left-right --count HEAD...elixira-engine/default-template`,
+        { encoding: "utf-8", cwd: projectDir }
+      )
+      .trim();
 
-    if (status.includes("Your branch is behind")) {
+    // The output will be "X	Y" where X is the number of commits ahead and Y is the number of commits behind
+    const [ahead, behind] = comparison
+      .split(/\s+/)
+      .map((num) => parseInt(num, 10));
+
+    if (behind > 0) {
       console.log("Updates found, updating Elixira engine...");
       child_process.execSync(`git pull elixira-engine default-template`, {
         stdio: "inherit",
