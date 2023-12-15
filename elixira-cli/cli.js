@@ -66,40 +66,33 @@ function createProject(targetPath) {
 
 function updateProject() {
   const projectDir = process.cwd();
+  const remoteName = "elixira-engine";
+  const remoteBranch = "default-template";
 
   console.log(`Checking for updates in ${projectDir}...`);
 
   try {
     // Fetch the latest repository data from elixira-engine remote
-    child_process.execSync(`git fetch elixira-engine`, {
+    child_process.execSync(`git fetch ${remoteName}`, {
       stdio: "inherit",
       cwd: projectDir,
     });
 
-    // Check if there are commits in elixira-engine/default-template that are not in the current branch
-    const comparison = child_process
-      .execSync(
-        `git rev-list --left-right --count HEAD...elixira-engine/default-template`,
-        { encoding: "utf-8", cwd: projectDir }
-      )
-      .trim();
-
-    // The output will be "X	Y" where X is the number of commits ahead and Y is the number of commits behind
-    const [ahead, behind] = comparison
-      .split(/\s+/)
-      .map((num) => parseInt(num, 10));
-
-    if (behind > 0) {
-      console.log("Updates found, updating Elixira engine...");
-      child_process.execSync(`git pull elixira-engine default-template`, {
+    // Attempt to merge changes from the remote branch, allowing unrelated histories
+    console.log(
+      "Attempting to merge changes from elixira-engine, allowing unrelated histories..."
+    );
+    child_process.execSync(
+      `git merge ${remoteName}/${remoteBranch} --allow-unrelated-histories`,
+      {
         stdio: "inherit",
         cwd: projectDir,
-      });
-      console.log("Project updated successfully.");
-    } else {
-      console.log("No updates available.");
-    }
+      }
+    );
+
+    console.log("Project updated successfully.");
   } catch (error) {
+    // If the merge fails, it may be due to conflicts that need to be resolved manually.
     console.error("Error while updating project:", error.message);
   }
 }
