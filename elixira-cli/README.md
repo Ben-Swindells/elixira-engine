@@ -1,4 +1,4 @@
-# Elixra Engine CLI
+# Elixira Engine CLI
 
 Elixira engine is a react three fiber based 3D game engine, with unique tools to help you design and manage your game development process.
 
